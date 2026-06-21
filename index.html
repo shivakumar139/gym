@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PULSEFIT is a fictional, customizable one-page gym website demo for showcasing premium gym website design." />
+  <meta name="theme-color" content="#080a07" />
+  <meta property="og:title" content="PULSEFIT — Customizable Gym Website Demo" />
+  <meta property="og:description" content="A premium one-page gym website concept that can be customized for your fitness business." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1200&q=80" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>PULSEFIT — Gym Website Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <div class="announcement" id="announcementBar">
+    <div class="container announcement__inner">
+      <p>This is a customizable gym website demo. Your branding, images, programs and contact details can be added.</p>
+      <a class="announcement__link js-customize-link" href="#customize">Customize This Website</a>
+    </div>
+  </div>
+
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-wrap">
+      <a href="#home" class="brand" aria-label="PULSEFIT home">
+        <span class="brand__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="brand__text">PULSE<span>FIT</span></span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#trainers">Trainers</a>
+        <a href="#plans">Plans</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <span class="demo-badge">Demo Website Concept</span>
+        <a class="btn btn--ghost nav-trial" href="#trial">Free Trial</a>
+        <a class="btn btn--accent js-customize-link" href="#customize">Customize</a>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+      <div class="container mobile-menu__inner">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#programs">Programs</a>
+        <a href="#facilities">Facilities</a>
+        <a href="#trainers">Trainers</a>
+        <a href="#plans">Plans</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <div class="mobile-menu__actions">
+          <a class="btn btn--ghost" href="#trial">Book Free Trial</a>
+          <a class="btn btn--accent js-customize-link" href="#customize">Customize This Website</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="hero section" id="home">
+      <div class="hero__glow hero__glow--one"></div>
+      <div class="hero__glow hero__glow--two"></div>
+      <div class="container hero__grid">
+        <div class="hero__content reveal">
+          <div class="eyebrow"><span></span> Stronger Every Day</div>
+          <h1>Build Strength.<br />Build Confidence.<br /><span>Build Your Best Self.</span></h1>
+          <p class="hero__lead">Experience expert coaching, modern equipment, motivating workouts and a fitness community built to help you progress.</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--accent btn--large" href="#trial">Book a Free Trial</a>
+            <a class="btn btn--ghost btn--large" href="#programs">Explore Programs</a>
+          </div>
+          <a class="hero__owner-link js-customize-link" href="#customize">Own a gym? Customize this demo <span aria-hidden="true">↗</span></a>
+
+          <div class="hero__stats" id="heroStats" aria-label="Gym feature highlights"></div>
+        </div>
+
+        <div class="hero__visual reveal reveal--delay">
+          <div class="hero-card">
+            <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1000&q=88" alt="Athlete training in a gym" fetchpriority="high" />
+            <div class="hero-card__shade"></div>
+            <div class="hero-card__label">
+              <small>Train with purpose</small>
+              <strong>Progress is built daily.</strong>
+            </div>
+          </div>
+
+          <div class="metric-chip metric-chip--top">
+            <span class="metric-chip__icon">↗</span>
+            <div><small>Focused Plans</small><strong>Built Around You</strong></div>
+          </div>
+          <div class="metric-chip metric-chip--bottom">
+            <span class="metric-chip__pulse"></span>
+            <div><small>Flexible Training</small><strong>Your Pace. Your Goal.</strong></div>
+          </div>
+          <div class="hero__vertical-word" aria-hidden="true">PULSEFIT</div>
+        </div>
+      </div>
+
+      <div class="container partner-strip reveal">
+        <span>Built for modern fitness brands</span>
+        <div class="partner-strip__items" aria-label="Fitness categories">
+          <b>STRENGTH</b><b>ENDURANCE</b><b>MOBILITY</b><b>COACHING</b><b>RECOVERY</b>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--compact" id="about">
+      <div class="container">
+        <div class="section-heading section-heading--center reveal">
+          <div class="eyebrow eyebrow--center"><span></span> Built for consistency</div>
+          <h2>Fitness Designed <span>Around You</span></h2>
+          <p>Whether your goal is strength, weight management, improved mobility or better overall health, PULSEFIT gives you the environment and guidance to stay consistent.</p>
+        </div>
+
+        <div class="about-panel reveal">
+          <div class="about-panel__visual">
+            <img src="https://images.unsplash.com/photo-1534367610401-9f5ed68180aa?auto=format&fit=crop&w=1100&q=85" alt="Person performing strength training" loading="lazy" />
+            <div class="about-panel__tag">Your goal. Your plan. Your progress.</div>
+          </div>
+          <div class="benefit-list" id="benefitList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="programs">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow"><span></span> Train with direction</div>
+            <h2>Find the Program<br /><span>That Fits Your Goal</span></h2>
+          </div>
+          <p>Choose a training style that matches your current level, schedule and ambition. Every card can be replaced with your gym’s actual programs.</p>
+        </div>
+        <div class="program-grid" id="programGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="facilities">
+      <div class="container">
+        <div class="section-heading section-heading--center reveal">
+          <div class="eyebrow eyebrow--center"><span></span> Premium spaces</div>
+          <h2>Experience Fitness <span>Like Never Before</span></h2>
+          <p>Facilities shown are part of this demo concept and can be replaced with your gym’s actual spaces and equipment.</p>
+        </div>
+        <div class="facility-grid" id="facilityGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="trainers">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow"><span></span> Meet the team</div>
+            <h2>Your Fitness Goals.<br /><span>Their Expertise.</span></h2>
+          </div>
+          <p>Use clean trainer profiles to show specializations, create trust and make it easy for prospects to book a session.</p>
+        </div>
+        <div class="trainer-grid" id="trainerGrid"></div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="plans">
+      <div class="container">
+        <div class="section-heading section-heading--center reveal">
+          <div class="eyebrow eyebrow--center"><span></span> Flexible membership</div>
+          <h2>Choose Your <span>Training Experience</span></h2>
+          <p>Plans and prices are placeholders and will be customized for your gym.</p>
+        </div>
+        <div class="pricing-grid" id="pricingGrid"></div>
+      </div>
+    </section>
+
+    <section class="section trial-section" id="trial">
+      <div class="container trial-layout">
+        <div class="trial-copy reveal">
+          <div class="eyebrow"><span></span> Start today</div>
+          <h2>Your First Workout<br /><span>Starts Here</span></h2>
+          <p>Use this conversion-focused form to collect enquiries without a backend. Submitted details are formatted and opened directly in WhatsApp.</p>
+          <div class="trial-points">
+            <div><span>✓</span> Quick, mobile-friendly booking</div>
+            <div><span>✓</span> No account or app required</div>
+            <div><span>✓</span> Easy to connect with your WhatsApp</div>
+          </div>
+          <div class="trial-visual">
+            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=1000&q=85" alt="Athlete lifting weights" loading="lazy" />
+          </div>
+        </div>
+
+        <form class="trial-form reveal reveal--delay" id="trialForm" novalidate>
+          <div class="form-header">
+            <span>Free Trial Request</span>
+            <strong>Tell us your goal</strong>
+          </div>
+          <div class="form-grid">
+            <label>
+              <span>Full Name *</span>
+              <input type="text" name="name" autocomplete="name" placeholder="Your full name" required />
+              <small class="field-error"></small>
+            </label>
+            <label>
+              <span>Mobile Number *</span>
+              <input type="tel" name="phone" autocomplete="tel" placeholder="Your mobile number" required />
+              <small class="field-error"></small>
+            </label>
+            <label>
+              <span>Email Address</span>
+              <input type="email" name="email" autocomplete="email" placeholder="you@example.com" />
+              <small class="field-error"></small>
+            </label>
+            <label>
+              <span>Fitness Goal *</span>
+              <select name="goal" required>
+                <option value="">Select your goal</option>
+                <option>Build Strength</option>
+                <option>Fat Loss</option>
+                <option>Improve Fitness</option>
+                <option>Mobility & Flexibility</option>
+                <option>General Wellness</option>
+              </select>
+              <small class="field-error"></small>
+            </label>
+            <label>
+              <span>Preferred Program *</span>
+              <select name="program" id="programSelect" required></select>
+              <small class="field-error"></small>
+            </label>
+            <label>
+              <span>Preferred Date *</span>
+              <input type="date" name="date" id="preferredDate" required />
+              <small class="field-error"></small>
+            </label>
+            <label>
+              <span>Preferred Time *</span>
+              <select name="time" required>
+                <option value="">Select a time</option>
+                <option>Morning — 6:00 AM to 10:00 AM</option>
+                <option>Afternoon — 12:00 PM to 4:00 PM</option>
+                <option>Evening — 5:00 PM to 9:00 PM</option>
+              </select>
+              <small class="field-error"></small>
+            </label>
+            <label class="form-grid__full">
+              <span>Message</span>
+              <textarea name="message" rows="4" placeholder="Tell us anything else we should know"></textarea>
+            </label>
+          </div>
+          <button class="btn btn--accent btn--large btn--full" type="submit">
+            <span class="button-label">Book My Free Trial</span>
+            <span class="button-loader" aria-hidden="true"></span>
+          </button>
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="transformations">
+      <div class="container">
+        <div class="section-heading section-heading--center reveal">
+          <div class="eyebrow eyebrow--center"><span></span> Meaningful progress</div>
+          <h2>Transformation Is <span>More Than a Photo</span></h2>
+          <p>Replace these demo stories with genuine member transformations after receiving written permission.</p>
+        </div>
+        <div class="journey-grid reveal">
+          <article class="journey-card">
+            <span>01</span><h3>Strength Journey</h3><p>Show how consistent training can improve confidence, technique and everyday strength.</p>
+          </article>
+          <article class="journey-card journey-card--accent">
+            <span>02</span><h3>Lifestyle Transformation</h3><p>Share authentic stories about healthier routines, better energy and sustainable habits.</p>
+          </article>
+          <article class="journey-card">
+            <span>03</span><h3>Consistency Journey</h3><p>Celebrate members who built a repeatable routine and stayed committed to long-term progress.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section--soft" id="reviews">
+      <div class="container reviews-layout">
+        <div class="reviews-copy reveal">
+          <div class="eyebrow"><span></span> Social proof</div>
+          <h2>Your Success Stories.<br /><span>Your Inspiration.</span></h2>
+          <p>Use this area to display genuine customer feedback and optionally connect your best Google reviews.</p>
+          <div class="google-review-box">
+            <span class="google-review-box__stars">★★★★★</span>
+            <div><strong>Google Reviews Integration</strong><small>Showcase your best Google reviews here.</small></div>
+          </div>
+        </div>
+        <div class="testimonial-shell reveal reveal--delay">
+          <div class="testimonial-track" id="testimonialTrack"></div>
+          <div class="carousel-controls">
+            <button id="prevTestimonial" type="button" aria-label="Previous testimonial">←</button>
+            <div class="carousel-dots" id="carouselDots"></div>
+            <button id="nextTestimonial" type="button" aria-label="Next testimonial">→</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="faq">
+      <div class="container faq-layout">
+        <div class="faq-copy reveal">
+          <div class="eyebrow"><span></span> Common questions</div>
+          <h2>Everything You<br /><span>Need to Know</span></h2>
+          <p>Frequently asked questions reduce hesitation and help prospects decide faster.</p>
+          <a class="btn btn--ghost js-whatsapp-general" href="#contact">Ask on WhatsApp</a>
+        </div>
+        <div class="faq-list reveal reveal--delay" id="faqList"></div>
+      </div>
+    </section>
+
+    <section class="section customize-section" id="customize">
+      <div class="container">
+        <div class="customize-card reveal">
+          <div class="customize-card__glow"></div>
+          <div class="customize-card__content">
+            <div class="eyebrow eyebrow--dark"><span></span> Website service demo</div>
+            <h2>Want This Website<br />for Your Gym?</h2>
+            <p>This one-page demo can be customized with your gym’s name, logo, colors, photographs, trainers, facilities, plans, reviews, WhatsApp number, Google Maps location and domain.</p>
+            <div class="customize-features" id="customizeFeatures"></div>
+            <div class="customize-actions">
+              <a class="btn btn--dark btn--large js-customize-link" href="#contact">Get My Customized Website</a>
+              <a class="btn btn--dark-outline btn--large js-customize-link" href="#contact">Chat With the Designer</a>
+            </div>
+          </div>
+          <div class="customize-card__preview" aria-hidden="true">
+            <div class="browser-frame">
+              <div class="browser-frame__top"><i></i><i></i><i></i></div>
+              <div class="browser-frame__body">
+                <div class="mini-nav"></div>
+                <div class="mini-title"></div>
+                <div class="mini-title mini-title--short"></div>
+                <div class="mini-btn"></div>
+                <div class="mini-cards"><i></i><i></i><i></i></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-layout">
+        <div class="contact-copy reveal">
+          <div class="eyebrow"><span></span> Let’s connect</div>
+          <h2>Connect. Engage.<br /><span>Transform.</span></h2>
+          <p>Use this contact section to turn website visitors into calls, WhatsApp conversations and free-trial bookings.</p>
+          <div class="contact-actions">
+            <a class="btn btn--accent" id="contactCall" href="tel:+910000000000">Call Now</a>
+            <a class="btn btn--ghost js-whatsapp-general" href="#">WhatsApp</a>
+            <a class="btn btn--ghost" href="#trial">Book Free Trial</a>
+          </div>
+        </div>
+
+        <div class="contact-card reveal reveal--delay">
+          <div class="contact-card__details">
+            <article><span>Location</span><strong id="contactAddress">Your Gym Address, Your City</strong></article>
+            <article><span>Phone</span><strong id="contactPhone">+91 XXXXX XXXXX</strong></article>
+            <article><span>Email</span><strong><a id="contactEmail" href="mailto:hello@yourgym.com">hello@yourgym.com</a></strong></article>
+            <article><span>Opening Hours</span><strong id="contactHours">Monday–Saturday: 6:00 AM–10:00 PM</strong></article>
+          </div>
+          <a class="map-placeholder" id="mapLink" href="#" aria-label="Open gym location">
+            <div class="map-placeholder__grid"></div>
+            <span class="map-pin">●</span>
+            <strong>Your Google Maps Location Will Appear Here</strong>
+            <small>Replace this placeholder with your real map link.</small>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#home" class="brand">
+          <span class="brand__mark" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="brand__text">PULSE<span>FIT</span></span>
+        </a>
+        <span class="demo-badge">Demo Website Concept</span>
+        <p>PULSEFIT is a fictional brand created only to demonstrate a customizable gym website concept.</p>
+      </div>
+      <div>
+        <h3>Navigate</h3>
+        <a href="#about">About</a><a href="#programs">Programs</a><a href="#trainers">Trainers</a><a href="#plans">Plans</a>
+      </div>
+      <div>
+        <h3>Popular Programs</h3>
+        <a href="#programs">Strength Training</a><a href="#programs">Personal Training</a><a href="#programs">Fat Loss</a><a href="#programs">Yoga & Mobility</a>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <a id="footerPhone" href="tel:+910000000000">+91 XXXXX XXXXX</a>
+        <a id="footerEmail" href="mailto:hello@yourgym.com">hello@yourgym.com</a>
+        <a class="js-whatsapp-general" href="#">WhatsApp</a>
+      </div>
+    </div>
+    <div class="container footer__bottom">
+      <p>Images, profiles, testimonials, facilities and plans are placeholders.</p>
+      <div><a href="#">Privacy Policy</a><a href="#">Terms</a><span>© <span id="year"></span> PULSEFIT Demo</span></div>
+    </div>
+  </footer>
+
+  <div class="floating-actions" aria-label="Quick actions">
+    <a class="floating-whatsapp js-whatsapp-general" href="#" aria-label="Chat on WhatsApp">WA</a>
+    <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+  </div>
+
+  <div class="mobile-bottom-bar">
+    <a id="mobileCall" href="tel:+910000000000"><span>☎</span>Call</a>
+    <a class="js-whatsapp-general" href="#"><span>◉</span>WhatsApp</a>
+    <a href="#trial"><span>↗</span>Free Trial</a>
+  </div>
+
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Facility image viewer" aria-hidden="true">
+    <button class="lightbox__close" id="lightboxClose" type="button" aria-label="Close image viewer">×</button>
+    <img id="lightboxImage" src="" alt="" />
+    <p id="lightboxCaption"></p>
+  </div>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HealthClub",
+    "name": "PULSEFIT Demo",
+    "description": "Fictional customizable gym website demonstration concept.",
+    "telephone": "+91 XXXXX XXXXX",
+    "email": "hello@yourgym.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Your Gym Address",
+      "addressLocality": "Your City"
+    }
+  }
+  </script>
+  <script src="script.js"></script>
+</body>
+</html>
