@@ -543,6 +543,96 @@ function initializeLightbox() {
   document.addEventListener("keydown", (event) => { if (event.key === "Escape" && lightbox.classList.contains("open")) close(); });
 }
 
+function initializeMotionClasses() {
+  const staggerGroups = [
+    "#programGrid",
+    "#facilityGrid",
+    "#trainerGrid",
+    "#pricingGrid",
+    "#benefitList",
+    "#customizeFeatures"
+  ];
+
+  staggerGroups.forEach((selector) => {
+    const group = $(selector);
+    if (!group) return;
+
+    [...group.children].forEach((item, index) => {
+      item.style.setProperty("--reveal-delay", `${Math.min(index * 70, 420)}ms`);
+      if (item.classList.contains("reveal")) {
+        item.classList.add(index % 3 === 0 ? "reveal--left" : index % 3 === 1 ? "reveal--scale" : "reveal--right");
+      }
+    });
+  });
+
+  $$(".program-card, .facility-card, .trainer-card").forEach((card) => card.classList.add("motion-card"));
+
+  $$(".section-heading.reveal").forEach((heading, index) => {
+    heading.classList.add(index % 2 ? "reveal--right" : "reveal--left");
+  });
+}
+
+function initializeHeroMotion() {
+  const hero = $(".hero");
+  const visual = $(".hero__visual");
+  const card = $(".hero-card");
+  if (!hero || !visual || !card) return;
+
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) return;
+
+  let frameId = null;
+  let targetX = 0;
+  let targetY = 0;
+
+  const render = () => {
+    card.style.setProperty("--hero-shift-x", `${targetX * 10}px`);
+    card.style.setProperty("--hero-shift-y", `${targetY * 8}px`);
+    frameId = null;
+  };
+
+  hero.addEventListener("pointermove", (event) => {
+    const heroRect = hero.getBoundingClientRect();
+    const visualRect = visual.getBoundingClientRect();
+
+    hero.style.setProperty("--pointer-x", `${event.clientX - heroRect.left}px`);
+    hero.style.setProperty("--pointer-y", `${event.clientY - heroRect.top}px`);
+
+    targetX = ((event.clientX - visualRect.left) / visualRect.width) - 0.5;
+    targetY = ((event.clientY - visualRect.top) / visualRect.height) - 0.5;
+
+    if (!frameId) frameId = requestAnimationFrame(render);
+  });
+
+  hero.addEventListener("pointerleave", () => {
+    targetX = 0;
+    targetY = 0;
+    if (!frameId) frameId = requestAnimationFrame(render);
+  });
+}
+
+function initializeCardTilt() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  if (!window.matchMedia("(pointer: fine)").matches) return;
+
+  $$(".motion-card").forEach((card) => {
+    card.addEventListener("pointermove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width;
+      const y = (event.clientY - rect.top) / rect.height;
+      const rotateY = (x - 0.5) * 7;
+      const rotateX = (0.5 - y) * 7;
+      card.style.setProperty("--tilt-x", `${rotateX.toFixed(2)}deg`);
+      card.style.setProperty("--tilt-y", `${rotateY.toFixed(2)}deg`);
+    });
+
+    card.addEventListener("pointerleave", () => {
+      card.style.setProperty("--tilt-x", "0deg");
+      card.style.setProperty("--tilt-y", "0deg");
+    });
+  });
+}
+
 function initializeScrollEffects() {
   const header = $("#siteHeader");
   const backToTop = $("#backToTop");
@@ -563,7 +653,7 @@ function initializeScrollEffects() {
         revealObserver.unobserve(entry.target);
       }
     });
-  }, { threshold: .12 });
+  }, { threshold: .1, rootMargin: "0px 0px -7% 0px" });
   $$(".reveal").forEach((element) => revealObserver.observe(element));
 
   const sections = $$('main section[id]');
@@ -598,6 +688,7 @@ function initializeApp() {
   renderFaqs();
   renderCustomizationFeatures();
   updateContactDetails();
+  initializeMotionClasses();
 
   initializeMenu();
   initializeWhatsAppLinks();
@@ -605,6 +696,8 @@ function initializeApp() {
   initializeFaqs();
   initializeTestimonials();
   initializeLightbox();
+  initializeHeroMotion();
+  initializeCardTilt();
   initializeScrollEffects();
   initializeMapPlaceholder();
 }

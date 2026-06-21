@@ -437,6 +437,297 @@ input.invalid, select.invalid, textarea.invalid { border-color: rgba(255,107,107
 @keyframes pulse { 0%,100% { transform: scale(.8); opacity: .5; } 50% { transform: scale(1.2); opacity: .05; } }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+
+/* =========================================================
+   MOTION SYSTEM — lightweight CSS + vanilla JS animations
+   ========================================================= */
+:root {
+  --ease-smooth: cubic-bezier(.22,.8,.24,1);
+  --ease-spring: cubic-bezier(.16,1,.3,1);
+}
+
+/* Hero entrance sequence */
+.hero__content.is-visible .eyebrow {
+  animation: heroFadeUp .65s var(--ease-spring) .05s both;
+}
+.hero__content.is-visible h1 {
+  animation: heroTitleReveal .95s var(--ease-spring) .12s both;
+}
+.hero__content.is-visible .hero__lead {
+  animation: heroFadeUp .7s var(--ease-spring) .25s both;
+}
+.hero__content.is-visible .hero__actions {
+  animation: heroFadeUp .7s var(--ease-spring) .34s both;
+}
+.hero__content.is-visible .hero__owner-link {
+  animation: heroFadeUp .7s var(--ease-spring) .42s both;
+}
+.hero__content.is-visible .stat-card {
+  animation: heroStatIn .7s var(--ease-spring) both;
+}
+.hero__content.is-visible .stat-card:nth-child(1) { animation-delay: .45s; }
+.hero__content.is-visible .stat-card:nth-child(2) { animation-delay: .53s; }
+.hero__content.is-visible .stat-card:nth-child(3) { animation-delay: .61s; }
+.hero__content.is-visible .stat-card:nth-child(4) { animation-delay: .69s; }
+
+.hero-card {
+  transform: translate3d(var(--hero-shift-x, 0), var(--hero-shift-y, 0), 0);
+  transition: transform .35s ease-out, border-color .35s ease, box-shadow .35s ease;
+  will-change: transform;
+}
+.hero-card:hover {
+  border-color: rgba(184,255,53,.32);
+  box-shadow: 0 34px 90px rgba(0,0,0,.56), 0 0 0 1px rgba(184,255,53,.05);
+}
+.hero-card img {
+  animation: heroImageBreathe 8s ease-in-out infinite;
+  will-change: transform;
+}
+.hero-card::after {
+  animation: heroGlowMove 7s ease-in-out infinite alternate;
+}
+.metric-chip--top { animation: chipFloatTop 4.8s ease-in-out infinite; }
+.metric-chip--bottom { animation: chipFloatBottom 5.4s ease-in-out .55s infinite; }
+.metric-chip:hover { border-color: rgba(184,255,53,.5); }
+
+/* Ambient glow follows pointer inside hero */
+.hero::after {
+  content: "";
+  position: absolute;
+  left: var(--pointer-x, 72%);
+  top: var(--pointer-y, 28%);
+  width: 320px;
+  height: 320px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,255,53,.10), transparent 68%);
+  filter: blur(12px);
+  opacity: .8;
+  pointer-events: none;
+  transition: left .16s linear, top .16s linear;
+}
+
+/* Staggered scroll reveals */
+.reveal {
+  --reveal-delay: 0ms;
+  transition-delay: var(--reveal-delay);
+  will-change: transform, opacity, filter;
+  filter: blur(5px);
+}
+.reveal.reveal--left { transform: translateX(-34px); }
+.reveal.reveal--right { transform: translateX(34px); }
+.reveal.reveal--scale { transform: translateY(18px) scale(.96); }
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+  filter: blur(0);
+}
+
+/* Subtle 3D pointer tilt for visual cards */
+.motion-card.reveal.is-visible {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  --lift: 0px;
+  transform: perspective(900px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(var(--lift));
+  transform-style: preserve-3d;
+  transition: transform .22s ease-out, border-color .28s ease, box-shadow .28s ease;
+  will-change: transform;
+}
+.motion-card.reveal.is-visible:hover {
+  --lift: -7px;
+  box-shadow: 0 24px 65px rgba(0,0,0,.34);
+}
+.motion-card > * { transform: translateZ(0); }
+.motion-card:hover .program-card__content,
+.motion-card:hover .trainer-card__content,
+.motion-card:hover .facility-card__caption { transform: translateZ(22px); }
+.program-card__content,
+.trainer-card__content,
+.facility-card__caption { transition: transform .3s var(--ease-smooth); }
+
+/* Gloss sweep on media cards */
+.program-card::before,
+.facility-card::before,
+.trainer-card__image::before {
+  content: "";
+  position: absolute;
+  z-index: 4;
+  top: -35%;
+  left: -70%;
+  width: 45%;
+  height: 170%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.16), transparent);
+  transform: rotate(16deg);
+  transition: left .8s var(--ease-smooth);
+  pointer-events: none;
+}
+.program-card:hover::before,
+.facility-card:hover::before,
+.trainer-card:hover .trainer-card__image::before { left: 130%; }
+
+/* Images become more vivid on interaction */
+.facility-card img,
+.trainer-card img,
+.about-panel__visual img,
+.trial-visual img { transition: transform .75s var(--ease-smooth), filter .45s ease; }
+.facility-card:hover img { transform: scale(1.075); filter: grayscale(.15) contrast(1.06); }
+.trainer-card:hover img { transform: scale(1.045); filter: grayscale(.35) contrast(1.04); }
+.about-panel.is-visible .about-panel__visual img { animation: slowImageDrift 12s ease-in-out infinite alternate; }
+.trial-copy.is-visible .trial-visual img { animation: slowImageDrift 11s ease-in-out .5s infinite alternate-reverse; }
+
+/* Heading accent underline draws in */
+.section-heading h2 span,
+.trial-copy h2 span,
+.faq-copy h2 span,
+.reviews-copy h2 span,
+.contact-copy h2 span {
+  position: relative;
+  display: inline-block;
+}
+.section-heading h2 span::after,
+.trial-copy h2 span::after,
+.faq-copy h2 span::after,
+.reviews-copy h2 span::after,
+.contact-copy h2 span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -.08em;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), rgba(184,255,53,0));
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.reveal.is-visible h2 span::after,
+.trial-copy.is-visible h2 span::after,
+.faq-copy.is-visible h2 span::after,
+.reviews-copy.is-visible h2 span::after,
+.contact-copy.is-visible h2 span::after {
+  animation: drawAccent .85s var(--ease-spring) .25s forwards;
+}
+
+/* Partner labels gently pulse in sequence */
+.partner-strip.is-visible b { animation: partnerPulse 4.8s ease-in-out infinite; }
+.partner-strip.is-visible b:nth-child(2) { animation-delay: .35s; }
+.partner-strip.is-visible b:nth-child(3) { animation-delay: .7s; }
+.partner-strip.is-visible b:nth-child(4) { animation-delay: 1.05s; }
+.partner-strip.is-visible b:nth-child(5) { animation-delay: 1.4s; }
+
+/* Button micro-interactions */
+.btn,
+.hero-stage__cta,
+.program-card__actions a,
+.floating-whatsapp {
+  position: relative;
+  overflow: hidden;
+}
+.btn::after,
+.program-card__actions a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 25%, rgba(255,255,255,.22) 47%, transparent 68%);
+  transform: translateX(-130%);
+  transition: transform .65s var(--ease-smooth);
+  pointer-events: none;
+}
+.btn:hover::after,
+.program-card__actions a:hover::after { transform: translateX(130%); }
+.floating-whatsapp { animation: whatsappFloat 3.2s ease-in-out infinite; }
+.floating-whatsapp::after {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px solid rgba(184,255,53,.48);
+  border-radius: 50%;
+  animation: whatsappRing 2.4s ease-out infinite;
+}
+
+/* Form interaction feedback */
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: rgba(184,255,53,.55);
+  box-shadow: 0 0 0 4px rgba(184,255,53,.07), 0 10px 26px rgba(0,0,0,.18);
+  transform: translateY(-1px);
+}
+input,
+select,
+textarea { transition: border-color .25s ease, box-shadow .25s ease, transform .25s ease; }
+
+/* FAQ icon rotation */
+.faq-item.open button span { transform: rotate(45deg); color: #0b1203; background: var(--accent); border-color: var(--accent); }
+
+/* Decorative browser mockup motion */
+.customize-card.is-visible .browser-frame { animation: browserHover 5.8s ease-in-out infinite; }
+.customize-card.is-visible .mini-cards i { animation: miniCardPulse 3.6s ease-in-out infinite; }
+.customize-card.is-visible .mini-cards i:nth-child(2) { animation-delay: .35s; }
+.customize-card.is-visible .mini-cards i:nth-child(3) { animation-delay: .7s; }
+
+/* Map marker bounce */
+.contact-card.is-visible .map-pin { animation: mapPinBounce 3s ease-in-out infinite; }
+
+@keyframes heroFadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes heroTitleReveal {
+  from { opacity: 0; transform: translateY(34px); clip-path: inset(0 0 100% 0); }
+  to { opacity: 1; transform: translateY(0); clip-path: inset(0 0 0 0); }
+}
+@keyframes heroStatIn {
+  from { opacity: 0; transform: translateY(18px) scale(.92); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+@keyframes heroImageBreathe {
+  0%,100% { transform: scale(1.01) translateY(0); }
+  50% { transform: scale(1.055) translateY(-5px); }
+}
+@keyframes heroGlowMove {
+  from { background-position: 30% 20%; opacity: .6; }
+  to { background-position: 70% 60%; opacity: 1; }
+}
+@keyframes chipFloatTop {
+  0%,100% { transform: translateY(0) rotate(-.5deg); }
+  50% { transform: translateY(-10px) rotate(.8deg); }
+}
+@keyframes chipFloatBottom {
+  0%,100% { transform: translateY(0) rotate(.5deg); }
+  50% { transform: translateY(10px) rotate(-.8deg); }
+}
+@keyframes slowImageDrift {
+  from { transform: scale(1.02) translate3d(-1%,0,0); }
+  to { transform: scale(1.09) translate3d(1.5%,-1%,0); }
+}
+@keyframes drawAccent { to { transform: scaleX(1); } }
+@keyframes partnerPulse {
+  0%,100% { color: rgba(244,247,239,.42); transform: translateY(0); }
+  50% { color: rgba(184,255,53,.92); transform: translateY(-3px); }
+}
+@keyframes whatsappFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@keyframes whatsappRing {
+  0% { transform: scale(.8); opacity: .7; }
+  80%,100% { transform: scale(1.35); opacity: 0; }
+}
+@keyframes browserHover {
+  0%,100% { transform: rotate(3deg) translateY(0); }
+  50% { transform: rotate(1.5deg) translateY(-10px); }
+}
+@keyframes miniCardPulse {
+  0%,100% { opacity: .75; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-5px); }
+}
+@keyframes mapPinBounce {
+  0%,100% { transform: rotate(-45deg) translate(0,0); }
+  45% { transform: rotate(-45deg) translate(5px,-5px); }
+  60% { transform: rotate(-45deg) translate(1px,-1px); }
+}
+
 @media (max-width: 1120px) {
   .desktop-nav { gap: 14px; }
   .desktop-nav a { font-size: .7rem; }
@@ -540,5 +831,7 @@ input.invalid, select.invalid, textarea.invalid { border-color: rgba(255,107,107
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .reveal.reveal--left, .reveal.reveal--right, .reveal.reveal--scale { opacity: 1; transform: none; filter: none; }
+  .motion-card.reveal.is-visible, .hero-card { transform: none !important; }
+  .hero::after { display: none; }
 }
